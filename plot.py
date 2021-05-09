@@ -43,7 +43,8 @@ def _plot_gps_data(src_file: str, dst_file: str) -> None:
 
 
 if __name__ == '__main__':
-    _plot_gps_data("/mnt/smb/gps.csv", "/mnt/smb/gps_plot.html")
-else:
-    print("Src:", sys.argv[1], " Dst:", sys.argv[2])
-    _plot_gps_data(sys.argv[1], sys.argv[2])
+    if sys.argv == 1:
+        _plot_gps_data("/mnt/gps.csv", "/mnt/smb/gps_plot.html")
+    else:
+        print("Src:", sys.argv[1], " Dst:", sys.argv[2])
+        _plot_gps_data(sys.argv[1], sys.argv[2])
