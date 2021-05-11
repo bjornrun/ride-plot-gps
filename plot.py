@@ -19,7 +19,7 @@ def _plot_gps_data(src_file: str, dst_file: str) -> None:
     m = folium.Map(width=2048, height=2048, location=[lat_mean, lon_mean], zoom_start=11, min_zoom=5, max_zoom=19)
 
     oneday = dt.timedelta(1)
-    currentday = df.index[0]
+    currentday = df.index[0].replace(hour=0, minute=0, second=0, microsecond=0)
     lastday = df.index[-1]
     while currentday < lastday:
         tmp_df = df[(df.index >= currentday) & (df.index <= currentday + oneday)]
