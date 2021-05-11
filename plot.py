@@ -22,9 +22,7 @@ def _plot_gps_data(src_file: str, dst_file: str) -> None:
     currentday = df.index[0]
     lastday = df.index[-1]
     while currentday < lastday:
-        start_idx = df.index.searchsorted(currentday)
-        end_idx = df.index.searchsorted(currentday + oneday)
-        tmp_df = df.iloc[start_idx:end_idx]
+        tmp_df = df[(df.index >= currentday) & (df.index <= currentday + oneday)]
         f = folium.FeatureGroup(currentday.strftime('%Y-%02m-%d'))
         track = tmp_df[['lat', 'lon']].drop_duplicates()
         print("{d_str}: track len: {track_len}".format(d_str=currentday.strftime('%Y-%m-%d'), track_len=len(track)))
